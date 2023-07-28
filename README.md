@@ -139,3 +139,39 @@ at node:internal/main/run_main_module:23:47
 > set "type": "module" in the package.json <br>
 > : package.json 에 type: module 을 추가하는 해결 방안 선택함
 
+* 실행 명령어
+##### --experimental-modules 플래그 사용 
+```bash
+node --experimental-modules index.mjs
+```
+![image](https://github.com/oiosu/Uni-crawling/assets/99783474/368c63a2-0929-4928-923f-148e45b6e505)
+> 여전히 한글깨짐이 발생하고 있음을 확인되었다.
+
+---
+
+#### ◼ .MJS 파일에 대해 알아보기 
+* .MJS: NODE.JS 애플리케이션에서 ECMA 모듈(ECMAScript Module)로 사용되는 JavaScript소스 코드 파일
+* Node.js 의 native 모듈 시스템은 JS 코드를 구성하기 위해 코드를 여러 파일로 분할하는데 사용되는 CommonJS이다.
+* 모듈이 CommonJS 인지 ES6인지 식별하기 위해 Node.js에서 사용하는 유일한 방법이다.
+* ECMAScript 모듈은 재사용을 위해 JavaScript 코드를 패키징하기 위한 표준 형식이다.
+
+#### ◼ CommonJS와 ES Modules은 왜 함께 할 수 없는가? 
+|CommonJS(이하CJS)|ESM Script(이하 MJS)|
+|------|---|
+| `require()`와 `module.exports`를 사용 | `import`와 `export`를 사용 |
+
+(1) ESM 에서는 require() 사용할 수 없다. 오로지 import 만 가능하다. <br>
+(2) CJS도 마찬가지로 import 를 사용할 수는 없다. <br>
+(3) ESM에서 CJS를 import 하여 사용할 수는 있지만 오로지 default import만 가능하다. <br>
+`import ___ from lodash` 그러나 CJS가 `named export` 를 사용하고 있다면 `named import import` <br>
+`{ shuffle } from 'lodash` 와 같은 것은 불가능하다. <br>
+(4) ESM을 CJS에서 `require()` 로 가져올 수는 있다. 그러나 이는 별로 권장되지 않는다. <br>
+(5) CJS는 기본값으로 지정되어 있다. 따라서 ESM 모드를 사용하기 위해서는 `opt-in`해야 한다.  <br>
+`.js` 를 `.mjs` 로 바꾸거나, `package.json` 에 `"type": "module"` 옵션을 넣는 방법이 있다. <br>
+(기존에 `CJS`를 쓰던 것은 `.cjs` 로 바꾸면 된다.) <br>
+* 출처 : https://yceffort.kr/2020/08/commonjs-esmodules
+
+
+#### 3. 한글깨짐 해결하기 
+
+1. 
