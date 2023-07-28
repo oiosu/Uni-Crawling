@@ -101,3 +101,41 @@ $bodyList.each(function(i, elem) {
 
 ![image](https://github.com/oiosu/Uni-crawling/assets/99783474/9ed60f77-2be0-4f82-b347-481a8e6c33ae)
 
+
+#### 2. 문제가 되는 코드 수정하기 
+
+
+##### 2-(1) require 대신 Node.js 최신 구문의 `import` 문 사용하기 
+```javascript
+import axios from "axios";
+import cheerio from "cheerio";
+import { log } from "console";
+import iconv from "iconv-lite";
+```
+
+#### 2-(2) `iconv-lite` 는 업데이트 되지 않고 있는 모듈이기 때문에 `iconv-lite-umd` 로 변경하기 
+```javascript
+import iconv from "iconv-lite-umd";
+```
+
+#### 2-(3) 오류 발생 
+```bash
+(node:7540) Warning: To load an ES module, set "type": "module" in the
+package.json or use the .mjs extension.
+```
+```bash
+SyntaxError: Cannot use import statement outside a module
+at internalCompileFunction (node:internal/vm:73:18)
+at wrapSafe (node:internal/modules/cjs/loader:1178:20)
+at Module._compile (node:internal/modules/cjs/loader:1220:27)
+at Module._extensions..js (node:internal/modules/cjs/loader:1310:10)
+at Module.load (node:internal/modules/cjs/loader:1119:32)
+at Module._load (node:internal/modules/cjs/loader:960:12)
+at Function.executeUserEntryPoint [as runMain]
+(node:internal/modules/run_main:81:12)
+at node:internal/main/run_main_module:23:47
+```
+
+> set "type": "module" in the package.json <br>
+> : package.json 에 type: module 을 추가하는 해결 방안 선택함
+
