@@ -183,3 +183,116 @@ node --experimental-modules index.mjs
 > * 자바스크립트의 buffer <br>
 > : 특정 크기의 메모리 공간에 바이너리 데이터를 저장해두는 객체 <br>
 > : 데이터가 저장될 메모리의 크기는 개발자가 바이트(byte) 단위로 직접 지정 가능 <br>
+
+
+(2) iconv.decode 를 사용하여 받은 arraybuffer 를 EUC-KR 인코딩으로 디코드합니다. 
+* 계속되는 오류 해결하기 <br>
+```bash
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for type@module.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+npm ERR! A complete log of this run can be found in:
+npm ERR! C:\Users\bestsu\AppData\Local\npm-cache\_logs\2023-07-
+17T02_05_35_294Z-debug-0.log
+
+PS C:\Users\bestsu\Desktop\백석대학교 크롤링> npm install iconv-lite
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for type@module.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+npm ERR! A complete log of this run can be found in:
+npm ERR! C:\Users\bestsu\AppData\Local\npm-cache\_logs\2023-07-
+17T02_18_50_104Z-debug-0.log
+
+```
+
+* iconv-lite 버전 확인하기
+```bash
+npm show iconv-lite version
+```
+
+* 지속적으로 모듈 설치 후 실행한 결과 한글 깨짐 사라짐을 확인할 수 있었다.
+> 모듈을 설치한 후 오류가 지속적으로 발생한다면, 모듈 설치 후 컴퓨터를 다시 off/on 하자
+
+![image](https://github.com/oiosu/Uni-crawling/assets/99783474/61668423-d44b-40bb-a723-13aa9850e3f9)
+
+
+
+
+#### 4. 엑셀파일로 만들기 
+```bash
+npm install xlsx
+```
+```bash
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for type@module.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+npm ERR! A complete log of this run can be found in:
+npm ERR! C:\Users\bestsu\AppData\Local\npm-cache\_logs\2023-07-
+17T04_46_48_106Z-debug-0.log
+```
+
+> 위와 같은 오류가 지속적으로 발생 확인
+
+(1) `npm` 최신 버전 확인하기
+```bash
+npm -v
+```
+
+(2) `npm` 최신 버전으로 업그레이드 하기 
+```bash
+npm install -g npm
+```
+
+(3) 다시 `xlsx` 모듈 설치하기 
+```bash
+npm install xlsx
+```
+
+(4) `npm` 캐시 삭제에 대해 알아보기
+* 강제 삭제 
+```bash
+npm cache clean --force
+```
+
+(5) 오류 체크 및 해결 
+```bash
+npm cache verify
+```
+
+```bash
+// 결과
+Cache verified and compressed (~\AppData\Local\npm-cache\_cacache)
+Content verified: 15 (5738701 bytes)
+Index entries: 15
+Finished in 0.136s
+```
+```bash
+캐시 확인 및 압축(~\AppData\Local\npm-cache\_cacache)
+확인된 콘텐츠: 15(5738701바이트)
+색인 항목: 15
+0.136초 만에 완료
+```
+
+
+---
+
+#### [다시 정리]
+> 파일 다시 생성하고 npm init -y 후 다시 설치하기
+```bash
+npm init -y
+```
+```bash
+npm install axios cheerio
+```
+```bash
+npm install xlsx
+```
+```bash
+node --experimental-modules index.mjs
+```
+
+> `mjs` 파일 말고 자바스크립트 파일로 실행해도 가능!
+
